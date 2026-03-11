@@ -11,14 +11,14 @@ export function gridCellBorderClasses(
   columns3 = 3,
   includeTop = true,
 ) {
-  const left4 = index % columns2 !== 0;
-  const left6 = index % columns3 !== 0;
+  const hasLeftBorderAt4xl = index % columns2 !== 0;
+  const hasLeftBorderAt6xl = index % columns3 !== 0;
   return twMerge(
     clsx(
       "border-dashed border-r-0 border-b-0",
       includeTop ? "border-t-2" : "border-t-0",
-      left4 ? "@4xl:border-l-2" : "@4xl:border-l-0",
-      left6 ? "@6xl:border-l-2" : "@6xl:border-l-0",
+      hasLeftBorderAt4xl ? "@4xl:border-l-2" : "@4xl:border-l-0",
+      hasLeftBorderAt6xl ? "@6xl:border-l-2" : "@6xl:border-l-0",
     ),
   );
 }

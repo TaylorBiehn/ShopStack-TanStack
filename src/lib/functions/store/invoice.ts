@@ -21,7 +21,10 @@ export const getInvoiceUrl = createServerFn({ method: 'POST' })
   .handler(async ({ context, data }) => {
     const { orderId, paymentIntentId } = data;
     const userId = context.session?.user?.id;
-    const userRole = (context.session?.user as any)?.role;
+    const user = context.session?.user as
+      | { id?: string; email?: string; role?: string }
+      | undefined;
+    const userRole = user?.role;
 
     // Fetch payment record for the order
     const payment = await db.query.payments.findFirst({
@@ -86,8 +89,11 @@ export const getInvoiceUrl = createServerFn({ method: 'POST' })
       return { url: charge.receipt_url };
     }
 
-    // Fallback: Check for invoice URL if it exists
-    const pi = paymentIntent as any;
+    // Fallback: Check for invoice URL if it exists (invoice can be present when expanded)
+    type PaymentIntentWithInvoice = Stripe.PaymentIntent & {
+      invoice?: string | { id: string };
+    };
+    const pi = paymentIntent as PaymentIntentWithInvoice;
     if (pi.invoice) {
       const invoiceId =
         typeof pi.invoice === 'string' ? pi.invoice : pi.invoice.id;
