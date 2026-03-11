@@ -88,7 +88,7 @@ Make sure you have the following installed on your machine:
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/FullStack-Flow/shop-stack.git
+git clone https://github.com/TaylorBiehn/ShopStack-TanStack.git
 cd shop-stack
 ```
 
@@ -147,9 +147,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## <a name="resources">🔗 Resources</a>
 
-- **Live Demo**: [https://shop-stack-demo.vercel.app/](https://shop-stack-demo.vercel.app/)
-- **Repository**: [https://github.com/FullStack-Flow/shop-stack](https://github.com/FullStack-Flow/shop-stack)
-- **Video Walkthrough**: [https://youtu.be/KRZF4VxqETU](https://youtu.be/KRZF4VxqETU)
+<!-- - **Live Demo**: [https://shop-stack-demo.vercel.app/](https://shop-stack-demo.vercel.app/)
+- **Repository**: [https://github.com/TaylorBiehn/ShopStack-TanStack](https://github.com/TaylorBiehn/ShopStack-TanStack)
+- **Video Walkthrough**: [https://youtu.be/KRZF4VxqETU](https://youtu.be/KRZF4VxqETU) -->
 
 ## <a name="deployment">🚀 Deployment</a>
 

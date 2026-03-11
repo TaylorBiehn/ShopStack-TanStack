@@ -21,7 +21,7 @@ export async function sendEmail({
   to,
   subject,
   body,
-  from = "Shop Stack <noreply@shakibdshy.me>",
+  from = "Shop Stack",
 }: SendEmailProps) {
   try {
     // Convert React email component to HTML
