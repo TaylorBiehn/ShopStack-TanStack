@@ -1,5 +1,6 @@
 import { render } from "@react-email/components";
 import nodemailer from "nodemailer";
+import type { ReactElement } from "react";
 
 const transporter = nodemailer.createTransport({
   host: process.env.BREVO_SMTP_SERVER,
@@ -14,7 +15,7 @@ const transporter = nodemailer.createTransport({
 export interface SendEmailProps {
   to: string | string[];
   subject: string;
-  body: React.ReactElement;
+  body: ReactElement;
   from?: string;
 }
 export async function sendEmail({
@@ -33,10 +34,9 @@ export async function sendEmail({
       subject,
       html: emailHtml,
     });
-
     return { messageId: info.messageId };
-  } catch (err) {
-    console.error("Email sending error:", err);
-    throw err;
+  } catch (error: unknown) {
+    console.error("Email sending error:", error);
+    throw error;
   }
 }
