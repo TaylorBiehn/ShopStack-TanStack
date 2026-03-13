@@ -19,12 +19,23 @@ import { authMiddleware } from "../middleware/auth";
 // Helper: Transform raw user to AdminUser type
 // ============================================================================
 
-const transformUser = (u: any): AdminUser => ({
+type RawUser = {
+  id: string;
+  name?: string | null;
+  email: string;
+  image?: string | null;
+  role?: UserRole | null;
+  banned?: boolean | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+const transformUser = (u: RawUser): AdminUser => ({
   id: u.id,
   name: u.name ?? u.email,
   email: u.email,
   image: u.image ?? undefined,
-  role: (u.role ?? "customer") as UserRole,
+  role: u.role ?? "customer",
   banned: u.banned ?? false,
   status: u.banned ? "banned" : "active",
   createdAt: u.createdAt,
@@ -107,7 +118,7 @@ export const getUsers = createServerFn({ method: "GET" })
       query: { limit: 100 },
       headers: context.headers,
     });
-    const rawUsers = (result as any)?.users ?? [];
+    const rawUsers = result?.users ?? [];
 
     return {
       users: rawUsers.map(transformUser),
